@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol JSONParsing {
+public protocol JSONParsing {
 
 	static func parse(json: JSON) throws -> Self
 
@@ -16,11 +16,11 @@ protocol JSONParsing {
 
 // JSONParsingPrimitive types get extracted directly with a type check
 
-protocol JSONParsingPrimitive: JSONParsing {}
+public protocol JSONParsingPrimitive: JSONParsing {}
 
-extension JSONParsingPrimitive {
+public extension JSONParsingPrimitive {
 
-	static func parse(json: JSON) throws -> Self {
+	public static func parse(json: JSON) throws -> Self {
 		if let object = json.object {
 			if let res = object as? Self {
 				return res
@@ -44,14 +44,13 @@ extension Double: JSONParsingPrimitive {}
 
 // JSONParsingRawString types are enums with JSONParsing-conforming RawType-s
 
-protocol JSONParsingRawRepresentable: RawRepresentable, JSONParsing {
+public protocol JSONParsingRawRepresentable: RawRepresentable, JSONParsing {
 	typealias RawValue: JSONParsing
-
 }
 
-extension JSONParsingRawRepresentable {
+public extension JSONParsingRawRepresentable {
 
-	static func parse(json: JSON) throws -> Self {
+	public static func parse(json: JSON) throws -> Self {
 		if let enumVal = try Self(rawValue: json^) {
 			return enumVal
 		} else {
