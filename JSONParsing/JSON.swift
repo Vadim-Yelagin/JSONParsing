@@ -8,26 +8,29 @@
 
 import Foundation
 
-final class JSON {
+public final class JSON {
 
-	enum Error: ErrorType {
+	public enum Error: ErrorType {
 		case NoValue(json: JSON)
 		case TypeMismatch(json: JSON)
 	}
 
-	struct ValidationError: ErrorType {
-		let message: String?
+	public struct ValidationError: ErrorType {
+		public init(message: String?) {
+			self.message = message
+		}
+		public let message: String?
 	}
 
-	let parentLink: (JSON, String)?
-	let object: AnyObject?
+	public let parentLink: (JSON, String)?
+	public let object: AnyObject?
 
-	init(_ object: AnyObject?) {
+	public init(_ object: AnyObject?) {
 		self.object = object
 		self.parentLink = nil
 	}
 
-	init(_ object: AnyObject?, parent: JSON, key: String) {
+	public init(_ object: AnyObject?, parent: JSON, key: String) {
 		self.object = object
 		self.parentLink = (parent, key)
 	}
@@ -40,12 +43,12 @@ final class JSON {
 		}
 	}
 
-	subscript(key: String) -> JSON {
+	public subscript(key: String) -> JSON {
 		let value = (object as? NSDictionary)?[key]
 		return JSON(value, parent: self, key: key)
 	}
 
-	var array: [JSON] {
+	public var array: [JSON] {
 		if let arr = object as? [AnyObject] {
 			return arr.enumerate().map {
 				idx, item in
@@ -56,7 +59,7 @@ final class JSON {
 		}
 	}
 
-	var optional: JSON? {
+	public var optional: JSON? {
 		if object == nil || object is NSNull {
 			return nil
 		} else {
@@ -64,7 +67,7 @@ final class JSON {
 		}
 	}
 
-	func parse<T: JSONParsing>() throws -> T {
+	public func parse<T: JSONParsing>() throws -> T {
 		return try T.parse(self)
 	}
 
@@ -72,6 +75,6 @@ final class JSON {
 
 postfix operator ^ { }
 
-postfix func ^ <T: JSONParsing> (json: JSON) throws -> T {
+public postfix func ^ <T: JSONParsing> (json: JSON) throws -> T {
 	return try json.parse()
 }
