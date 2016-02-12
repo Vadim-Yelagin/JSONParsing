@@ -35,7 +35,7 @@ public final class JSON {
 		self.parentLink = (parent, key)
 	}
 
-	var pathFromRoot: String {
+	public var pathFromRoot: String {
 		if let (parent, key) = self.parentLink {
 			return "\(parent.pathFromRoot)/\(key)"
 		} else {
