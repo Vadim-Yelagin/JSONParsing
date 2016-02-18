@@ -16,9 +16,11 @@ public final class JSON {
 	}
 
 	public struct ValidationError: ErrorType {
-		public init(message: String?) {
+		public init(json: JSON, message: String?) {
+			self.json = json
 			self.message = message
 		}
+		public let json: JSON
 		public let message: String?
 	}
 
