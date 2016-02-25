@@ -15,13 +15,6 @@ public final class JSON {
 		case TypeMismatch(json: JSON)
 	}
 
-	public struct ValidationError: ErrorType {
-		public init(message: String?) {
-			self.message = message
-		}
-		public let message: String?
-	}
-
 	public let parentLink: (JSON, String)?
 	public let object: AnyObject?
 
