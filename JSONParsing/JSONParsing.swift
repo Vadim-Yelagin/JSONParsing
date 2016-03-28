@@ -45,7 +45,7 @@ extension Double: JSONParsingPrimitive {}
 // JSONParsingRawString types are enums with JSONParsing-conforming RawType-s
 
 public protocol JSONParsingRawRepresentable: RawRepresentable, JSONParsing {
-	typealias RawValue: JSONParsing
+	associatedtype RawValue: JSONParsing
 }
 
 public extension JSONParsingRawRepresentable {
