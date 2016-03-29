@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "02A66A2A1C6CD82E00387AA1"
                BuildableName = "JSONParsing.framework"
-               BlueprintName = "JSONParsing"
+               BlueprintName = "JSONParsing-iOS"
                ReferencedContainer = "container:JSONParsing.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,7 +44,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "02A66A2A1C6CD82E00387AA1"
             BuildableName = "JSONParsing.framework"
-            BlueprintName = "JSONParsing"
+            BlueprintName = "JSONParsing-iOS"
             ReferencedContainer = "container:JSONParsing.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,7 +66,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "02A66A2A1C6CD82E00387AA1"
             BuildableName = "JSONParsing.framework"
-            BlueprintName = "JSONParsing"
+            BlueprintName = "JSONParsing-iOS"
             ReferencedContainer = "container:JSONParsing.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -84,7 +84,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "02A66A2A1C6CD82E00387AA1"
             BuildableName = "JSONParsing.framework"
-            BlueprintName = "JSONParsing"
+            BlueprintName = "JSONParsing-iOS"
             ReferencedContainer = "container:JSONParsing.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
