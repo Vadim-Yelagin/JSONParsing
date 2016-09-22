@@ -10,7 +10,7 @@ import Foundation
 
 public protocol JSONParsing {
 
-	static func parse(json: JSON) throws -> Self
+	static func parse(_ json: JSON) throws -> Self
 
 }
 
@@ -20,15 +20,15 @@ public protocol JSONParsingPrimitive: JSONParsing {}
 
 public extension JSONParsingPrimitive {
 
-	public static func parse(json: JSON) throws -> Self {
+	public static func parse(_ json: JSON) throws -> Self {
 		if let object = json.object {
 			if let res = object as? Self {
 				return res
 			} else {
-				throw JSON.Error.TypeMismatch(json: json)
+				throw JSON.Error.typeMismatch(json: json)
 			}
 		} else {
-			throw JSON.Error.NoValue(json: json)
+			throw JSON.Error.noValue(json: json)
 		}
 	}
 
@@ -50,11 +50,11 @@ public protocol JSONParsingRawRepresentable: RawRepresentable, JSONParsing {
 
 public extension JSONParsingRawRepresentable {
 
-	public static func parse(json: JSON) throws -> Self {
+	public static func parse(_ json: JSON) throws -> Self {
 		if let enumVal = try Self(rawValue: json^) {
 			return enumVal
 		} else {
-			throw JSON.Error.TypeMismatch(json: json)
+			throw JSON.Error.typeMismatch(json: json)
 		}
 	}
 

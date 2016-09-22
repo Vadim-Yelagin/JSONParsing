@@ -10,9 +10,9 @@ import Foundation
 
 public final class JSON {
 
-	public enum Error: ErrorType {
-		case NoValue(json: JSON)
-		case TypeMismatch(json: JSON)
+	public enum Error: Swift.Error {
+		case noValue(json: JSON)
+		case typeMismatch(json: JSON)
 	}
 
 	public let parentLink: (JSON, String)?
@@ -38,12 +38,12 @@ public final class JSON {
 
 	public subscript(key: String) -> JSON {
 		let value = (object as? NSDictionary)?[key]
-		return JSON(value, parent: self, key: key)
+		return JSON(value as AnyObject?, parent: self, key: key)
 	}
 
 	public var array: [JSON] {
 		if let arr = object as? [AnyObject] {
-			return arr.enumerate().map {
+			return arr.enumerated().map {
 				idx, item in
 				JSON(item, parent: self, key: "\(idx)")
 			}
@@ -66,7 +66,7 @@ public final class JSON {
 
 }
 
-postfix operator ^ { }
+postfix operator ^
 
 public postfix func ^ <T: JSONParsing> (json: JSON) throws -> T {
 	return try json.parse()
