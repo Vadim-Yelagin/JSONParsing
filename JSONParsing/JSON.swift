@@ -16,14 +16,14 @@ public final class JSON {
 	}
 
 	public let parentLink: (JSON, String)?
-	public let object: AnyObject?
+	public let object: Any?
 
-	public init(_ object: AnyObject?) {
+	public init(_ object: Any?) {
 		self.object = object
 		self.parentLink = nil
 	}
 
-	public init(_ object: AnyObject?, parent: JSON, key: String) {
+	public init(_ object: Any?, parent: JSON, key: String) {
 		self.object = object
 		self.parentLink = (parent, key)
 	}
@@ -38,11 +38,11 @@ public final class JSON {
 
 	public subscript(key: String) -> JSON {
 		let value = (object as? NSDictionary)?[key]
-		return JSON(value as AnyObject?, parent: self, key: key)
+		return JSON(value as Any?, parent: self, key: key)
 	}
 
 	public var array: [JSON] {
-		if let arr = object as? [AnyObject] {
+		if let arr = object as? [Any] {
 			return arr.enumerated().map {
 				idx, item in
 				JSON(item, parent: self, key: "\(idx)")
